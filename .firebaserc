@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "cloud-weeknd-firebase": {
+      "hosting": {
+        "cloud-weeknd-firebase": [
+          "cloud-weeknd-firebase"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "cloud-weeknd-firebase"
+  }
+}
