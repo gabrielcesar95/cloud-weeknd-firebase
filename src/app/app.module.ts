@@ -13,9 +13,11 @@ import {
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { HeaderComponent } from './components/header/header.component';
+import { TaskComponent } from './components/task/task.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
+  declarations: [AppComponent, HeaderComponent, TaskComponent, FooterComponent],
   imports: [
     BrowserModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
