@@ -4,7 +4,9 @@
     <div class="mx-auto flex max-w-7xl p-6">
       <ul role="list" class="divide-y divide-gray-100 flex flex-col w-full">
         <app-new-task></app-new-task>
-        <app-task></app-task>
+        <li class="flex w-full py-1" *ngFor="let task of tasks">
+          <app-task [task]="task"></app-task>
+        </li>
       </ul>
     </div>
   </main>

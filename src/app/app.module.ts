@@ -16,11 +16,19 @@ import { HeaderComponent } from './components/header/header.component';
 import { TaskComponent } from './components/task/task.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NewTaskComponent } from './components/new-task/new-task.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, TaskComponent, FooterComponent, NewTaskComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    TaskComponent,
+    FooterComponent,
+    NewTaskComponent,
+  ],
   imports: [
     BrowserModule,
+    FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideAnalytics(() => getAnalytics()),
