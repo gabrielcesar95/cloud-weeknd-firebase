@@ -1,9 +1,15 @@
-<div class="flex flex-row items-center w-full gap-x-2">
+<div *ngIf="task" class="flex flex-row items-center w-full gap-x-2">
     <div class="grow">
-        <p class="truncate text-gray-500">{{task?.title}}</p>
+        <div *ngIf="isEditing; then inputBlock else pBlock"></div>
+        <ng-template #inputBlock>
+            <input type="text" #titleInput [(ngModel)]="task.title" (blur)="toggleIsEditing()" />
+        </ng-template>
+        <ng-template #pBlock>
+            <p class="truncate text-gray-500" (click)="toggleIsEditing()">{{task.title}}</p>
+        </ng-template>
     </div>
     <div class="flex-none">
-        <button
+        <button *ngIf="!isEditing"
             class="px-3 py-2 text-sm text-white transition-colors duration-300 bg-red-500 rounded-full hover:bg-red-700">
             Excluir
         </button>
