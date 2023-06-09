@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { TaskService } from 'src/app/services/task.service';
 import { Task } from 'src/models/task';
 
 @Component({
@@ -8,9 +9,10 @@ import { Task } from 'src/models/task';
 })
 export class TaskComponent {
   @Input() task?: Task;
-
   @ViewChild('titleInput') titleInput!: ElementRef;
   isEditing = false;
+
+  constructor(private taskService: TaskService) {}
 
   toggleIsEditing(): void {
     if (!this.isEditing) {
@@ -20,4 +22,6 @@ export class TaskComponent {
     }
     this.isEditing = !this.isEditing;
   }
+
+  handleNewTask(): void {}
 }
