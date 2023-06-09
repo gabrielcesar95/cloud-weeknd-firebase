@@ -11,6 +11,6 @@ export class NewTaskComponent {
   constructor(private taskService: TaskService) {}
 
   saveTask(title: string): void {
-    this.taskService.create({ title: title });
+    this.taskService.create(title);
   }
 }

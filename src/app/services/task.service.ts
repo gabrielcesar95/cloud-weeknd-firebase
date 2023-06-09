@@ -13,7 +13,12 @@ export class TaskService {
     return of(TASKS);
   }
 
-  create(task: Task): void {
-    TASKS.push(task);
+  create(title: string): void {
+    const id = TASKS.length + 1;
+
+    TASKS.push({
+      id: id,
+      title: title,
+    });
   }
 }
