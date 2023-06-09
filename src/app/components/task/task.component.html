@@ -10,7 +10,8 @@
     </div>
     <div class="flex-none">
         <button *ngIf="!isEditing"
-            class="px-3 py-2 text-sm text-white transition-colors duration-300 bg-red-500 rounded-full hover:bg-red-700">
+            class="px-3 py-2 text-sm text-white transition-colors duration-300 bg-red-500 rounded-full hover:bg-red-700"
+            (click)="handleDelete(task)">
             Excluir
         </button>
     </div>

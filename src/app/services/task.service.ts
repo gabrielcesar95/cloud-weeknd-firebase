@@ -21,4 +21,11 @@ export class TaskService {
       title: title,
     });
   }
+
+  delete(task: Task): void {
+    const index = TASKS.indexOf(task);
+
+    TASKS.splice(index, 1);
+    console.log(TASKS);
+  }
 }

@@ -23,5 +23,7 @@ export class TaskComponent {
     this.isEditing = !this.isEditing;
   }
 
-  handleNewTask(): void {}
+  handleDelete(task: Task): void {
+    this.taskService.delete(task);
+  }
 }
