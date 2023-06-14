@@ -2,7 +2,8 @@
     <div class="grow">
         <div *ngIf="isEditing; then inputBlock else pBlock"></div>
         <ng-template #inputBlock>
-            <input type="text" #titleInput [(ngModel)]="task.title" (blur)="toggleIsEditing()" />
+            <input type="text" #titleInput [(ngModel)]="task.title" (blur)="toggleIsEditing()"
+                (change)="handleChange(task)" />
         </ng-template>
         <ng-template #pBlock>
             <p class="truncate text-gray-500" (click)="toggleIsEditing()">{{task.title}}</p>

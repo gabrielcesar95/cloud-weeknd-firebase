@@ -23,7 +23,15 @@ export class TaskComponent {
     this.isEditing = !this.isEditing;
   }
 
-  handleDelete(task: Task): void {
-    this.taskService.delete(task);
+  async handleChange(task: Task): Promise<void> {
+    if (!task.title) {
+      return this.handleDelete(task);
+    }
+
+    await this.taskService.update(task);
+  }
+
+  async handleDelete(task: Task): Promise<void> {
+    await this.taskService.delete(task);
   }
 }

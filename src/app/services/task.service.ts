@@ -1,31 +1,50 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Injectable, inject } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Task } from 'src/models/task';
-import { TASKS } from '../mock-tasks';
+import {
+  Firestore,
+  collection,
+  collectionData,
+  deleteDoc,
+  doc,
+  updateDoc,
+} from '@angular/fire/firestore';
+import { CollectionReference, addDoc } from '@firebase/firestore';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskService {
-  constructor() {}
+  tasks$: Observable<Task[]>;
+  firestore: Firestore = inject(Firestore);
+  tasksCollection: CollectionReference;
+
+  constructor() {
+    this.tasksCollection = collection(this.firestore, 'tasks');
+    this.tasks$ = collectionData(this.tasksCollection, {
+      idField: 'id',
+    }) as Observable<Task[]>;
+  }
 
   getTasks(): Observable<Task[]> {
-    return of(TASKS);
+    return this.tasks$;
   }
 
-  create(title: string): void {
-    const id = TASKS.length + 1;
+  async create(title: string): Promise<void> {
+    if (!title) {
+      return;
+    }
 
-    TASKS.push({
-      id: id,
-      title: title,
-    });
+    await addDoc(this.tasksCollection, <Task>{ title });
   }
 
-  delete(task: Task): void {
-    const index = TASKS.indexOf(task);
+  async update(task: Task): Promise<void> {
+    const docReference = doc(this.firestore, `tasks/${task.id}`);
+    await updateDoc(docReference, { ...task });
+  }
 
-    TASKS.splice(index, 1);
-    console.log(TASKS);
+  async delete(task: Task): Promise<void> {
+    const docReference = doc(this.firestore, `tasks/${task.id}`);
+    await deleteDoc(docReference);
   }
 }
